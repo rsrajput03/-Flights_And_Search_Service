@@ -1,4 +1,3 @@
-import e from "express";
 import CrudRepository from "./crud-repository";
 import Airplane, { AirplaneDTO } from "../models/airplane.model";
 

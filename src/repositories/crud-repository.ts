@@ -3,7 +3,7 @@ export interface CrudRepositoryDTo<T> {
   findOne(id: number): Promise<T | null>;
   findAll(): Promise<T[]>;
   update(id: number, item: Partial<T>): Promise<T | null>;
-  delete(id: number): Promise<T>;
+  delete(id: number): Promise<number>;
 }
 
 class CrudRepository<T> implements CrudRepositoryDTo<T> {
@@ -26,15 +26,13 @@ class CrudRepository<T> implements CrudRepositoryDTo<T> {
   }
 
   async update(id: number, item: T): Promise<T | null> {
-    const response = await this.model.findByPk(id);
-    if (!response) return null;
-
-    return this.model.update(item, { where: { id } });
+    await this.model.update(item, { where: { id } });
+    return this.model.findByPk(id);
   }
 
-  async delete(id: number): Promise<T> {
-    const response = this.model.destroy({ where: { id } });
-    return response;
+  async delete(id: number): Promise<number> {
+    await this.model.destroy({ where: { id } });
+    return id;
   }
 }
 
