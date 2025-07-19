@@ -14,25 +14,28 @@ class CrudRepository<T> implements CrudRepositoryDTo<T> {
   }
 
   async create(item: T): Promise<T> {
-    return this.model.create(item);
+    const response = await this.model.create(item);
+    return response;
   }
 
   async findOne(id: number): Promise<T | null> {
-    return this.model.findByPk(id);
+    const response = await this.model.findByPk(id);
+    return response;
   }
 
   async findAll(): Promise<T[]> {
-    return this.model.findAll();
+    const response = await this.model.findAll();
+    return response;
   }
 
   async update(id: number, item: T): Promise<T | null> {
-    await this.model.update(item, { where: { id } });
-    return this.model.findByPk(id);
+    const response = await this.model.update(item, { where: { id } });
+    return response;
   }
 
   async delete(id: number): Promise<number> {
-    await this.model.destroy({ where: { id } });
-    return id;
+    const response = await this.model.destroy({ where: { id } });
+    return response;
   }
 }
 

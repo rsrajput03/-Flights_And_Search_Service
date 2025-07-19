@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", routes);
 app.use(errorHandler);
 
+// 🚀 Start Server
 async function startServer() {
   try {
     await sequelize.authenticate();
