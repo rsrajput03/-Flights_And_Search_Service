@@ -1,5 +1,5 @@
 import express from "express";
-import airplaneRoutes from "./airplane-routes";
+import airplaneRoutes from "./airplane.routes";
 
 const v1Routes = express.Router();
 

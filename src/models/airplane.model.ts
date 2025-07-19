@@ -1,9 +1,5 @@
 import { Table, Column, Model, DataType } from "sequelize-typescript";
-
-export interface AirplaneDTO {
-  modelNumber: string;
-  capacity: number;
-}
+import { AirplaneDTO } from "../types/airplane.types";
 
 @Table({
   tableName: "Airplanes",

@@ -1,6 +1,6 @@
 import express from "express";
 import ServerConfig from "./config/server-config";
-import logger from "./config/logger-config";
+import logger from "./config/logger.config";
 import sequelize from "./config/sequelize";
 import errorHandler from "./middlewares/error-handler.middlerware";
 import routes from "./routes";
@@ -18,9 +18,7 @@ async function startServer() {
     await sequelize.authenticate();
     logger.info(`Database connection established successfully.`);
     app.listen(ServerConfig.PORT, () => {
-      logger.info(
-        `Successfully started the server on port ${ServerConfig.PORT}`
-      );
+      logger.info(`Successfully started the server on port ${ServerConfig.PORT}`);
     });
   } catch (error) {
     logger.error("Unable Start Server: ", error);
