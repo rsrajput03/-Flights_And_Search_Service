@@ -1,10 +1,4 @@
-export interface APIResponseDTO<T> {
-  success: boolean;
-  message: string;
-  data?: T;
-  errors?: any;
-  statusCode: number;
-}
+import { APIResponseDTO, ErrorResponse, SuccessResponse } from "../types/common.types";
 
 export class APIResponse {
   // success response
@@ -12,11 +6,7 @@ export class APIResponse {
     data,
     message = "Success",
     statusCode = 200,
-  }: {
-    data: T;
-    message: string;
-    statusCode: number;
-  }): APIResponseDTO<T> {
+  }: SuccessResponse<T>): APIResponseDTO<T> {
     return {
       success: true,
       message,
@@ -29,14 +19,13 @@ export class APIResponse {
   static error({
     message = "Unexpected Error",
     statusCode = 500,
-  }: {
-    message: string;
-    statusCode: number;
-  }): APIResponseDTO<null> {
+    errors = null,
+  }: ErrorResponse): APIResponseDTO<null> {
     return {
       success: false,
       message,
       statusCode,
+      ...(errors && { errors }),
     };
   }
 }

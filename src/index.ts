@@ -1,7 +1,7 @@
 import express from "express";
-import ServerConfig from "./config/server-config";
+import ServerConfig from "./config/server.config";
 import logger from "./config/logger.config";
-import sequelize from "./config/sequelize";
+import sequelize from "./config/sequelize.config";
 import errorHandler from "./middlewares/error-handler.middlerware";
 import routes from "./routes";
 

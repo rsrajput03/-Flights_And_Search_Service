@@ -6,10 +6,6 @@ import { NextFunction, Request, Response } from "express";
 const airplaneService = new AirplaneService();
 
 class AirplaneController {
-  /**
-   * POST : /airplanes
-   * req-body {modelNumber: 'airbus320', capacity:}
-   */
   async createAirplane(req: Request, res: Response, next: NextFunction) {
     const { modelNumber, capacity } = req.body;
     try {

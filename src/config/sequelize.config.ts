@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize-typescript";
 import { models } from "../models";
-const dbConfig = require("./db-config.js");
+const dbConfig = require("./db.config.js");
 
 const env = process.env.NODE_ENV || "development";
 const config = (dbConfig as any)[env];

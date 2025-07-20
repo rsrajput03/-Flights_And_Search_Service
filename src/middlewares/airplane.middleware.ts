@@ -1,13 +1,12 @@
 import { NextFunction, Request, Response } from "express";
 import { ValidationError } from "../utils/app-error";
 
-function validateRequest(req: Request, res: Response, next: NextFunction) {
+function validateCreateAirplaneRequest(req: Request, res: Response, next: NextFunction) {
   if (!req.body.modelNumber) {
     const error = new ValidationError("Model number is required", [
       {
         field: "modelNumber",
-        message:
-          "Model Number not found in the incoming request in the correct form",
+        message: "Model Number not found in the incoming request in the correct form",
       },
     ]);
     return next(error);
@@ -15,4 +14,4 @@ function validateRequest(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-export { validateRequest };
+export { validateCreateAirplaneRequest };

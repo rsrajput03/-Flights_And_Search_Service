@@ -1,4 +1,4 @@
-import { ValidationError as SequelizeValidationError } from "sequelize";
+import { ValidationError } from "sequelize";
 import { StatusCodes } from "http-status-codes";
 import AirplaneRepository from "../repositories/airplane.repository";
 import logger from "../config/logger.config";
@@ -13,7 +13,7 @@ class AirplaneService {
       const airplane = await airplaneRepository.create(data);
       return airplane;
     } catch (error: any) {
-      if (error instanceof SequelizeValidationError) {
+      if (error instanceof ValidationError) {
         const explanation = error.errors.map((err) => err.message);
         throw new DatabaseError("Something Went Wrong", explanation);
       }
@@ -77,7 +77,7 @@ class AirplaneService {
       const airplane = await airplaneRepository.findOne(id);
       return airplane;
     } catch (error: any) {
-      if (error instanceof SequelizeValidationError) {
+      if (error instanceof ValidationError) {
         const explanation = error.errors.map((err) => err.message);
         throw new DatabaseError("Something Went Wrong", explanation);
       }

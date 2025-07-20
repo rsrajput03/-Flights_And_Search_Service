@@ -1,11 +1,11 @@
-import express from "express";
+import { Router } from "express";
 import AirplaneController from "../../controllers/airplane.controller";
-import { validateRequest } from "../../middlewares/airplane.middleware";
+import { validateCreateAirplaneRequest } from "../../middlewares/airplane.middleware";
 
-const airplaneRoutes = express.Router();
+const airplaneRoutes = Router();
 const airplaneController = new AirplaneController();
 
-airplaneRoutes.post("/", validateRequest, airplaneController.createAirplane);
+airplaneRoutes.post("/", validateCreateAirplaneRequest, airplaneController.createAirplane);
 airplaneRoutes.get("/", airplaneController.getAirplanes);
 airplaneRoutes.get("/:id", airplaneController.getAirplane);
 airplaneRoutes.delete("/:id", airplaneController.deleteAirplane);

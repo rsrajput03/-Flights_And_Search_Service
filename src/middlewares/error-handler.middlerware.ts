@@ -19,7 +19,7 @@ const errorHandler = (err: Error, req: Request, res: Response, next: NextFunctio
     const response = APIResponse.error({
       statusCode: error?.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
       message: err.message,
-      ...(process.env.NODE_ENV !== "production" && { error: err }),
+      ...(process.env.NODE_ENV !== "production" && { errors: err }),
     });
     res.status(error.statusCode).json(response);
     return;
