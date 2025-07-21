@@ -2,14 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { APIResponse } from "../utils/api-response";
 import { AppError } from "../utils/app-error";
-import logger from "../config/logger-config";
+import logger from "../config/logger.config";
 
-const errorHandler = (
-  err: Error,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
   const error = err instanceof Error ? err : new Error("Unknown error");
 
   logger.error({
@@ -24,7 +19,7 @@ const errorHandler = (
     const response = APIResponse.error({
       statusCode: error?.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
       message: err.message,
-      ...(process.env.NODE_ENV !== "production" && { error: err }),
+      ...(process.env.NODE_ENV !== "production" && { errors: err }),
     });
     res.status(error.statusCode).json(response);
     return;

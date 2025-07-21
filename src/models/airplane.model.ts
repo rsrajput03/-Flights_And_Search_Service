@@ -1,23 +1,11 @@
 import { Table, Column, Model, DataType } from "sequelize-typescript";
-
-export interface AirplaneDTO {
-  modelNumber: string;
-  capacity: number;
-}
+import { AirplaneDTO } from "../types/airplane.types";
 
 @Table({
   tableName: "Airplanes",
   timestamps: true,
 })
 class Airplane extends Model<Airplane, AirplaneDTO> {
-  /**
-   * Helper method for defining associations.
-   * This method is not a part of Sequelize lifecycle.
-   * The `models/index` file will call this method automatically.
-   */
-  static associate(models: any) {
-    // define association here
-  }
   @Column({
     type: DataType.STRING,
     allowNull: false,

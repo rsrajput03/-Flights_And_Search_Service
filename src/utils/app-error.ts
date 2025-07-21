@@ -41,7 +41,6 @@ class UnauthorizedError extends AppError {
 
 class DatabaseError extends AppError {
   public readonly errors: any[];
-
   constructor(message: string, errors: any[] = []) {
     super(message, StatusCodes.BAD_REQUEST, true);
     this.errors = errors;
