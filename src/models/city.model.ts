@@ -1,5 +1,6 @@
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 import { CityDTO } from "../types/city.types";
+import Airport from "./airport.model";
 
 @Table({
   tableName: "Cities",
@@ -12,6 +13,10 @@ class City extends Model<City, CityDTO> {
     unique: true,
   })
   name!: string;
+
+  // Association
+  @HasMany(() => Airport)
+  airports!: Airport[];
 }
 
 export default City;

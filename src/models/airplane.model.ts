@@ -1,5 +1,6 @@
-import { Table, Column, Model, DataType } from "sequelize-typescript";
+import { Table, Column, Model, DataType, HasMany } from "sequelize-typescript";
 import { AirplaneDTO } from "../types/airplane.types";
+import Flight from "./flight.model";
 
 @Table({
   tableName: "Airplanes",
@@ -20,6 +21,10 @@ class Airplane extends Model<Airplane, AirplaneDTO> {
     },
   })
   capacity!: number;
+
+  // Association
+  @HasMany(() => Flight)
+  flights!: Flight[];
 }
 
 export default Airplane;
